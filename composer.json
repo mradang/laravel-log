@@ -1,0 +1,40 @@
+{
+    "name": "mradang/laravel-log",
+    "description": "laravel-log",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mradang",
+            "email": "mradang@163.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "~6.0||~7.0||~8.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.18",
+        "phpunit/phpunit": "~8.0",
+        "orchestra/testbench": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "mradang\\LaravelLog\\": "src"
+        },
+        "files": [
+            "src/app/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "mradang\\LaravelLog\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "mradang\\LaravelLog\\LaravelLogServiceProvider"
+            ]
+        }
+    }
+}
