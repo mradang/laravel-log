@@ -33,11 +33,12 @@ class FeatureTest extends TestCase
 
         L('test3', 'sys');
         $this->app['router']->post('lists', [LogController::class, 'lists']);
-        $data = [
+        $res = $this->json('POST', 'lists', [
             'page' => 1,
             'pagesize' => 2,
-        ];
-        $ret = $this->post('lists', $data);
-        $this->assertEquals($ret->original['count'], 3);
+        ]);
+        $res->assertJson([
+            'count' => 3,
+        ]);
     }
 }
