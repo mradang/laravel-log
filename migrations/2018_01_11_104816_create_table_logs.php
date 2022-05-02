@@ -15,7 +15,7 @@ return new class extends Migration
     {
         // 日志表
         Schema::create('logs', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('username'); // 用户名
             $table->string('ip'); // IP
             $table->text('log_msg'); // 日志信息
