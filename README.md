@@ -34,13 +34,25 @@ $schedule
 ## 添加的内容
 
 ### 添加的数据表迁移
+
 - logs
 
 ### 添加的路由
+
 - post /api/log/lists
 
 ### 添加的助手函数
+
 1. 数据库日志，用于记录用户操作
+
 ```php
 void L($msg, $username = null)
+```
+
+### 配置路由
+
+laravel-log 未自动配置路由，方便使用者自定义路由及权限控制
+
+```php
+Route::post('lists', [mradang\LaravelLog\Controllers\LogController::class, 'lists']);
 ```
