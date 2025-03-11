@@ -7,12 +7,12 @@ use mradang\LaravelLog\Services\LogService;
 
 class FeatureTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    public function testBasicFeatures()
+    public function test_basic_features()
     {
         $user = User::create(['name' => '张三']);
         $this->assertSame(1, $user->id);

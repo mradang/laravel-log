@@ -16,6 +16,7 @@ class LogController extends Controller
             'log_msg' => 'nullable|string',
             'ip' => 'nullable|ip',
         ]);
+
         return LogService::lists(
             $request->only('username', 'log_msg', 'ip'),
             $request->page,

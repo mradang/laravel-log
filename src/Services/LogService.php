@@ -2,10 +2,9 @@
 
 namespace mradang\LaravelLog\Services;
 
-use mradang\LaravelLog\Models\Log;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use mradang\LaravelLog\Models\Log;
 
 class LogService
 {
@@ -30,13 +29,13 @@ class LogService
     public static function lists(array $params, $page, $pagesize)
     {
         $query = Log::where(function ($query) use ($params) {
-            if (!empty($params['username'])) {
+            if (! empty($params['username'])) {
                 $query->where('username', $params['username']);
             }
-            if (!empty($params['log_msg'])) {
+            if (! empty($params['log_msg'])) {
                 $query->where('log_msg', 'like', "%{$params['log_msg']}%");
             }
-            if (!empty($params['ip'])) {
+            if (! empty($params['ip'])) {
                 $query->where('ip', $params['ip']);
             }
         });
@@ -46,6 +45,7 @@ class LogService
                 ->forPage($page, $pagesize)
                 ->get(),
         ];
+
         return $ret;
     }
 
@@ -55,11 +55,11 @@ class LogService
         Log::where('created_at', '<', $end)->orderBy('created_at')->chunk(100, function ($logs) {
             foreach ($logs as $log) {
                 $dt = Carbon::parse($log->created_at);
-                $folder = storage_path('logs/app' . $dt->format('Y'));
-                if (!is_dir($folder)) {
+                $folder = storage_path('logs/app'.$dt->format('Y'));
+                if (! is_dir($folder)) {
                     mkdir($folder, 0755, true);
                 }
-                $filename = $folder . '/' . $dt->format('m') . '.log';
+                $filename = $folder.'/'.$dt->format('m').'.log';
                 $content = sprintf(
                     "%s\t%s\t%s\t%s\n",
                     $log->created_at,

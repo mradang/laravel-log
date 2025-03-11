@@ -9,7 +9,7 @@ class LaravelLogServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->loadMigrationsFrom(\dirname(__DIR__) . '/migrations/');
+            $this->loadMigrationsFrom(\dirname(__DIR__).'/migrations/');
         }
     }
 }
